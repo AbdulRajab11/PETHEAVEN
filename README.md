@@ -1,5 +1,5 @@
 # <p align="center" style="margin-bottom: 0px;">PETHEAVEN</p>
-## <p align="center" style="margin-top: 0;">TOKO PERALATAN DAN PELAYAN HEWAN</p>
+## <p align="center" style="margin-top: 0;">TOKO PERALATAN HEWAN</p>
 
 <p align="center">
   <img src="LOGO-UNSULBAR.png" width="300" alt="Deskripsi gambar" />
