@@ -26,10 +26,10 @@
 |**Nama Field**|**Tipe Data**|**Keterangan**|
 | :- | :- | :- |
 |id\_user|INT (PK)|Primary Key, Auto Increment|
-|nama\_lengkap|VARCHAR(50)|Nama pengguna|
-|email|VARCHAR(50)|Email pengguna|
-|password|VARCHAR(255)|Password yang di-hash|
-|no\_hp|VARCHAR(20)|Nomor telepon|
+|nama\_lengkap|STRING|Nama pengguna|
+|email|STRING|Email pengguna|
+|password|STRING|Password yang di-hash|
+|no\_hp|STRING|Nomor telepon|
 |alamat|TEXT|Alamat lengkap pengguna|
 |role|ENUM('admin','petugas','user')|Status role pengguna|
 
@@ -38,11 +38,11 @@
 |**Nama Field**|**Tipe Data**|**Keterangan**|
 | :- | :- | :- |
 |id\_produk|INT (PK)|Primary Key, Auto Increment|
-|nama\_produk|VARCHAR(50)|Nama produk|
+|nama\_produk|STRING|Nama produk|
 |harga|DECIMAL(12,2)|Harga produk|
 |stok|INT|Stok produk yang tersedia|
 |deskripsi|TEXT|Deskripsi produk|
-|gambar|VARCHAR(255)|Nama file gambar produk|
+|gambar|STRING|Nama file gambar produk|
 |id\_kategori|INT (FK)|Foreign Key ke tabel kategori|
 
 **Tabel 3: kategori**
@@ -50,7 +50,7 @@
 |**Nama Field**|**Tipe Data**|**Keterangan**|
 | :- | :- | :- |
 |id\_kategori|INT (PK)|Primary Key, Auto Increment|
-|nama\_kategori|VARCHAR(50)|Nama kategori produk|
+|nama\_kategori|STRING|Nama kategori produk|
 
 **Tabel 4: keranjang**
 
@@ -87,7 +87,7 @@
 |**Nama Field**|**Tipe Data**|**Keterangan**|
 | :- | :- | :- |
 |id\_promo|INT (PK)|Primary Key, Auto Increment|
-|judul\_promo|VARCHAR(100)|Judul promo|
+|judul\_promo|STRING|Judul promo|
 |deskripsi|TEXT|Deskripsi promo|
 |tanggal\_mulai|DATE|Tanggal mulai promo|
 |tanggal\_selesai|DATE|Tanggal selesai promo|
