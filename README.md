@@ -1,110 +1,84 @@
-                              **PET HEAVEN**
+**PET HEAVEN**  
+**Abdul Rajab**  
+**D0223518**  
+**Framework Web Based**  
+**2025**  
 
+**Role dan Fitur**  
 
-                      ![](Aspose.Words.6ea87194-03eb-4a36-836c-c35243c9261c.001.jpeg)
+**Role** | **Fitur-Fitur**  
+---|---
+Admin | - Mengelola data produk<br>- Mengelola kategori<br>- Melihat daftar transaksi<br>- Mengelola data user<br>- Mengelola promo/iklan
+Petugas | - Mengelola stok barang<br>- Memproses pesanan<br>- Mengatur status transaksi<br>- Melihat daftar transaksi
+User (Pelanggan) | - Registrasi akun<br>- Login/logout<br>- Melihat produk berdasarkan kategori<br>- Menambah produk ke keranjang<br>- Melakukan checkout<br>- Melihat status pesanan<br>- Menerima notifikasi promo
 
+**Tabel-tabel database beserta field dan tipe datanya**  
 
-                                                Abdul Rajab
-                                              D0223518
+**Tabel 1: users**  
+| Nama Field | Tipe Data | Keterangan |
+|------------|----------|------------|
+| id_user | INT (PK) | Primary Key, Auto Increment |
+| nama_lengkap | VARCHAR(50) | Nama pengguna |
+| email | VARCHAR(50) | Email pengguna |
+| password | VARCHAR(255) | Password yang di-hash |
+| no_hp | VARCHAR(20) | Nomor telepon |
+| alamat | TEXT | Alamat lengkap pengguna |
+| role | ENUM('admin','petugas','user') | Status role pengguna |
 
+**Tabel 2: produk**  
+| Nama Field | Tipe Data | Keterangan |
+|------------|----------|------------|
+| id_produk | INT (PK) | Primary Key, Auto Increment |
+| nama_produk | VARCHAR(50) | Nama produk |
+| harga | DECIMAL(12,2) | Harga produk |
+| stok | INT | Stok produk yang tersedia |
+| deskripsi | TEXT | Deskripsi produk |
+| gambar | VARCHAR(255) | Nama file gambar produk |
+| id_kategori | INT (FK) | Foreign Key ke tabel kategori |
 
+**Tabel 3: kategori**  
+| Nama Field | Tipe Data | Keterangan |
+|------------|----------|------------|
+| id_kategori | INT (PK) | Primary Key, Auto Increment |
+| nama_kategori | VARCHAR(50) | Nama kategori produk |
 
+**Tabel 4: keranjang**  
+| Nama Field | Tipe Data | Keterangan |
+|------------|----------|------------|
+| id_keranjang | INT (PK) | Primary Key, Auto Increment |
+| id_user | INT (FK) | Foreign Key ke tabel users |
+| id_produk | INT (FK) | Foreign Key ke tabel produk |
+| jumlah | INT | Jumlah item yang dibeli |
 
-Framework Web Based
+**Tabel 5: transaksi**  
+| Nama Field | Tipe Data | Keterangan |
+|------------|----------|------------|
+| id_transaksi | INT (PK) | Primary Key, Auto Increment |
+| id_user | INT (FK) | Foreign Key ke tabel users → id_user (pelanggan) |
+| id_petugas | INT (FK) (nullable) | Foreign Key ke tabel users → id_user (petugas). Bisa NULL kalau belum diproses |
+| tanggal | DATETIME | Tanggal saat transaksi dilakukan |
+| total_harga | DECIMAL(12,2) | Total harga dari transaksi tersebut |
+| status | ENUM('Menunggu Pembayaran', 'Diproses', 'Dikirim', 'Selesai', 'Dibatalkan') | Status transaksi |
+| metode_pembayaran | ENUM('Transfer','COD','QRIS') | Metode pembayaran yang dipilih oleh pelanggan |
+| alamat_pengiriman | TEXT | Alamat pengiriman (ambil dari user saat transaksi, karena bisa beda tiap pesanan) |
+| catatan | TEXT (nullable) | Catatan tambahan dari pelanggan (opsional) |
 
-2025
+**Tabel 6: promo**  
+| Nama Field | Tipe Data | Keterangan |
+|------------|----------|------------|
+| id_promo | INT (PK) | Primary Key, Auto Increment |
+| judul_promo | VARCHAR(100) | Judul promo |
+| deskripsi | TEXT | Deskripsi promo |
+| tanggal_mulai | DATE | Tanggal mulai promo |
+| tanggal_selesai | DATE | Tanggal selesai promo |
 
-
-
-**Role dan Fitur**
-
-|**Role**|**Fitur-Fitur**|
-| :- | :- |
-|Admin|- Mengelola data produk <br>- Mengelola kategori <br>- Melihat daftar transaksi <br>- Mengelola data user <br>- Mengelola promo/iklan|
-|Petugas|- Mengelola stok barang <br>- Memproses pesanan <br>- Mengatur status transaksi <br>- Melihat daftar transaksi|
-|User (Pelanggan)|- Registrasi akun <br>- Login/logout <br>- Melihat produk berdasarkan kategori <br>- Menambah produk ke keranjang <br>- Melakukan checkout <br>- Melihat status pesanan <br>- Menerima notifikasi promo|
-
-**Tabel-tabel database beserta field dan tipe datanya**
-
-**Tabel 1: users**
-
-|**Nama Field**|**Tipe Data**|**Keterangan**|
-| :- | :- | :- |
-|id\_user|INT (PK)|Primary Key, Auto Increment|
-|nama\_lengkap|VARCHAR(50)|Nama pengguna|
-|email|VARCHAR(50)|Email pengguna|
-|password|VARCHAR(255)|Password yang di-hash|
-|no\_hp|VARCHAR(20)|Nomor telepon|
-|alamat|TEXT|Alamat lengkap pengguna|
-|role|ENUM('admin','petugas','user')|Status role pengguna|
-
-**Tabel 2: produk**
-
-|**Nama Field**|**Tipe Data**|**Keterangan**|
-| :- | :- | :- |
-|id\_produk|INT (PK)|Primary Key, Auto Increment|
-|nama\_produk|VARCHAR(50)|Nama produk|
-|harga|DECIMAL(12,2)|Harga produk|
-|stok|INT|Stok produk yang tersedia|
-|deskripsi|TEXT|Deskripsi produk|
-|gambar|VARCHAR(255)|Nama file gambar produk|
-|id\_kategori|INT (FK)|Foreign Key ke tabel kategori|
-
-**Tabel 3: kategori**
-
-|**Nama Field**|**Tipe Data**|**Keterangan**|
-| :- | :- | :- |
-|id\_kategori|INT (PK)|Primary Key, Auto Increment|
-|nama\_kategori|VARCHAR(50)|Nama kategori produk|
-
-**Tabel 4: keranjang**
-
-|**Nama Field**|**Tipe Data**|**Keterangan**|
-| :- | :- | :- |
-|id\_keranjang|INT (PK)|Primary Key, Auto Increment|
-|id\_user|INT (FK)|Foreign Key ke tabel users|
-|id\_produk|INT (FK)|Foreign Key ke tabel produk|
-|jumlah|INT|Jumlah item yang dibeli|
-
-
-
-**Tabel 5: transaksi**
-
-|**Nama Field**|**Tipe Data**|**Keterangan**|
-| :- | :- | :- |
-|id\_transaksi|INT (PK)|Primary Key, Auto Increment|
-|id\_user|INT (FK)|Foreign Key ke tabel users → id\_user (pelanggan)|
-|id\_petugas|INT (FK) (nullable)|Foreign Key ke tabel users → id\_user (petugas). Bisa NULL kalau belum diproses|
-|tanggal|DATETIME|Tanggal saat transaksi dilakukan|
-|total\_harga|DECIMAL(12,2)|Total harga dari transaksi tersebut|
-|status|ENUM('Menunggu Pembayaran', 'Diproses', 'Dikirim', 'Selesai', 'Dibatalkan')|Status transaksi|
-|metode\_pembayaran|ENUM('Transfer','COD','QRIS')|Metode pembayaran yang dipilih oleh pelanggan|
-|alamat\_pengiriman|TEXT|Alamat pengiriman (ambil dari user saat transaksi, karena bisa beda tiap pesanan)|
-|catatan|TEXT (nullable)|Catatan tambahan dari pelanggan (opsional)|
-
-
-
-
-
-
-**Tabel 6: promo**
-
-|**Nama Field**|**Tipe Data**|**Keterangan**|
-| :- | :- | :- |
-|id\_promo|INT (PK)|Primary Key, Auto Increment|
-|judul\_promo|VARCHAR(100)|Judul promo|
-|deskripsi|TEXT|Deskripsi promo|
-|tanggal\_mulai|DATE|Tanggal mulai promo|
-|tanggal\_selesai|DATE|Tanggal selesai promo|
-
-**Jenis relasi dan tabel berelasi**
-
-|**Tabel 1**|**Tabel 2**|**Jenis Relasi**|
-| :- | :- | :- |
-|users (user)|keranjang|**One to Many** (1 user bisa punya banyak keranjang)|
-|users (user)|transaksi|**One to Many** (1 user bisa melakukan banyak transaksi)|
-|users (petugas)|transaksi|**One to Many** (1 petugas memproses banyak transaksi — opsional, bisa tambah id\_petugas di tabel transaksi kalau perlu)|
-|kategori|produk|**One to Many** (1 kategori bisa punya banyak produk)|
-|produk|keranjang|**One to Many** (1 produk bisa masuk ke banyak keranjang)|
-|produk|transaksi|**Many to Many** (Karena 1 transaksi bisa berisi banyak produk, dan 1 produk bisa masuk ke banyak transaksi — bisa menggunakan tabel pivot detail\_transaksi)|
-
+**Jenis relasi dan tabel berelasi**  
+```plaintext
+Tabel 1          Tabel 2                Jenis Relasi
+users (user)     keranjang              One to Many
+users (user)     transaksi              One to Many
+users (petugas)  transaksi              One to Many
+kategori         produk                  One to Many
+produk           keranjang              One to Many
+produk           transaksi              Many to Many (via detail_transaksi)
+```
