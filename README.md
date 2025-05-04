@@ -5,7 +5,7 @@
   <img src="Logo Unsulbar.png" width="300" alt="Deskripsi gambar" />
 </p>
 
-### <p align="center">ABDUL</p>
+### <p align="center">ABDUL RAJAB</p>
 ### <p align="center">D0223518</p></br>
 ### <p align="center">Framework Web Based</p>
 ### <p align="center">2025</p>
