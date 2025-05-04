@@ -2,7 +2,7 @@
 ## <p align="center" style="margin-top: 0;">TOKO PERALATAN DAN PELAYAN HEWAN</p>
 
 <p align="center">
-  <img src="Universitas_Sulawesi_Barat" width="300" alt="Deskripsi gambar" />
+  <img src="Universitas_Sulawesi_Barat.png" width="300" alt="Deskripsi gambar" />
 </p>
 
 ### <p align="center">ABDUL RAJAB</p>
