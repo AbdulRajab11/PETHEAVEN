@@ -2,7 +2,7 @@
 ## <p align="center" style="margin-top: 0;">PENJUALAN PERALATAN HEWAN</p>
 
 <p align="center">
-  <img src="Logo Unsulbar.png" width="300" alt="Deskripsi gambar" />
+  <img src="LOGO-UNSULBAR.png" width="300" alt="Deskripsi gambar" />
 </p>
 
 ### <p align="center">ABDUL RAJAB</p>
