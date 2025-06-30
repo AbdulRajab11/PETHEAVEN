@@ -9,34 +9,13 @@ class KategoriSeeder extends Seeder
 {
     public function run()
     {
-        // Mengisi tabel kategori dengan data contoh
         DB::table('kategori')->insert([
-            [
-                'nama_kategori' => 'Makanan Hewan',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama_kategori' => 'Aksesori Hewan',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama_kategori' => 'Kandang',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama_kategori' => 'Mainan Hewan',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama_kategori' => 'Perawatan Hewan',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            // Tambahkan lebih banyak kategori sesuai kebutuhan
+            ['nama_kategori' => 'Makanan Kucing'],
+            ['nama_kategori' => 'Makanan Anjing'],
+            ['nama_kategori' => 'Aksesoris'],
+            ['nama_kategori' => 'Mainan'],
+            ['nama_kategori' => 'Perawatan'],
+            ['nama_kategori' => 'Kandang'],
         ]);
     }
 }

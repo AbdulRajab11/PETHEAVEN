@@ -9,7 +9,8 @@ class CreateKategoriTable extends Migration
     public function up()
     {
         Schema::create('kategori', function (Blueprint $table) {
-            $table->id('id_kategori');
+            $table->engine = 'InnoDB'; // ⬅️ PENTING!
+            $table->id('id_kategori'); // ⬅️ Tipe: BIGINT UNSIGNED AUTO_INCREMENT
             $table->string('nama_kategori');
             $table->timestamps();
         });

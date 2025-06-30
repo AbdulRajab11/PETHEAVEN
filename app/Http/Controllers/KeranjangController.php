@@ -2,48 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Keranjang; // Pastikan model Keranjang sudah ada
+use App\Models\Keranjang;
+// use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KeranjangController extends Controller
 {
-    // Menampilkan semua item di keranjang
+    // Menampilkan semua item keranjang milik user yang sedang login
     public function index()
     {
-        $keranjangs = Keranjang::with(['produk', 'user'])->get(); // Mengambil data keranjang beserta relasi produk dan user
-        return response()->json($keranjangs);
+        $keranjangs = Keranjang::where('id_user', Auth::id())->get();
+        return view('user.keranjang', compact('keranjangs'));
     }
 
-    // Menambahkan item ke keranjang
+    // Menambahkan produk ke keranjang
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
-            'id_user' => 'required|exists:user,id_user',
             'id_produk' => 'required|exists:produk,id_produk',
             'jumlah' => 'required|integer|min:1',
         ]);
 
-        $keranjang = Keranjang::create($request->all());
-        return response()->json($keranjang, 201);
+        $id_produk = $request->id_produk;
+        $id_user = Auth::id();
+
+        $keranjang = Keranjang::where('id_user', $id_user)
+            ->where('id_produk', $id_produk)
+            ->first();
+
+        if ($keranjang) {
+            $keranjang->jumlah += $request->jumlah;
+            $keranjang->save();
+        } else {
+            Keranjang::create([
+                'id_user' => $id_user,
+                'id_produk' => $id_produk,
+                'jumlah' => $request->jumlah,
+            ]);
+        }
+
+        return redirect()->route('keranjang.index')->with('success', 'Produk berhasil ditambahkan ke keranjang.');
     }
 
-    // Mengupdate item di keranjang
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'jumlah' => 'required|integer|min:1',
-        ]);
 
-        $keranjang = Keranjang::findOrFail($id);
-        $keranjang->update($request->all());
-        return response()->json($keranjang);
-    }
+    // Menghapus produk dari keranjang
+        public function destroy($id_keranjang)
+{
+    $keranjang = Keranjang::where('id_keranjang', $id_keranjang)
+        ->where('id_user', Auth::id())
+        ->firstOrFail();
 
-    // Menghapus item dari keranjang
-    public function destroy($id)
-    {
-        $keranjang = Keranjang::findOrFail($id);
-        $keranjang->delete();
-        return response()->json(null, 204);
-    }
+    $keranjang->delete();
+
+    return redirect()->route('keranjang.index')->with('success', 'Produk berhasil dihapus dari keranjang.');
+}
+
 }

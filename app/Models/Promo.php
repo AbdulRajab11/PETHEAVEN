@@ -2,13 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Promo extends Model
 {
-    use HasFactory;
+    protected $table = 'promo'; // Nama tabel
+    protected $primaryKey = 'id_promo'; // Primary key
 
-    protected $table = 'promo';
-    protected $fillable = ['kode_promo', 'diskon', 'tanggal_mulai', 'tanggal_selesai', 'syarat'];
+    protected $fillable = [
+        'judul_promo',
+        'deskripsi',
+        'tanggal_mulai',
+        'tanggal_selesai',
+    ];
+
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'id_promo');
+    }
 }
+    

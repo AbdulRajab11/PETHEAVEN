@@ -4,14 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaksi; // Pastikan model Transaksi sudah ada
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
     // Menampilkan semua transaksi
     public function index()
     {
-        $transaksis = Transaksi::with(['user', 'petugas'])->get(); // Mengambil data transaksi beserta relasi user dan petugas
-        return response()->json($transaksis);
+        // $transaksis = Transaksi::with(['user', 'petugas'])->get(); // Mengambil data transaksi beserta relasi user dan petugas
+        // return response()->json($transaksis);
+        $transaksis = \App\Models\Transaksi::all(); // atau with('kategori') jika perlu
+        return view('partials.transaksi', compact('transaksis'));
+
+        $transaksi = Transaksi::with(['user', 'petugas'])->get();
+        return view('transaksi', compact('transaksi'));
+    }
+    public function petugasTransaksi()
+    {
+        $transaksis = Transaksi::with('user', 'pesanan')->orderBy('created_at', 'desc')->get();
+        return view('petugas.transaksi', compact('transaksis'));
+    }
+    public function userTransaksi()
+    {
+        $transaksis = Transaksi::with('user')
+            ->where('id_user', Auth::id()) // hanya ambil milik user login
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('user.transaksi', compact('transaksis'));
     }
 
     // Menambahkan transaksi baru
@@ -32,21 +52,27 @@ class TransaksiController extends Controller
         return response()->json($transaksi, 201);
     }
 
+    public function edit($id)
+    {
+        $transaksi = Transaksi::with('user', 'pesanan')->findOrFail($id);
+        $transaksi = Transaksi::findOrFail($id);
+        $statuses = ['Belum Bayar', 'Dibayar', 'Dikirim', 'Selesai'];
+        return view('petugas.transaksi', compact('transaksi', 'statuses'));
+    }
     // Mengupdate transaksi
     public function update(Request $request, $id)
     {
         $request->validate([
-            'status' => 'sometimes|required|in:Menunggu Pembayaran,Diproses,Dikirim,Selesai,Dibatalkan',
-            'total_harga' => 'sometimes|required|numeric',
-            'metode_pembayaran' => 'sometimes|required|in:Transfer,COD,QRIS',
-            'alamat_pengiriman' => 'sometimes|required|string',
-            'catatan' => 'nullable|string',
+            'status' => 'required|in:Menunggu Pembayaran,Diproses,Dikirim,Selesai,Dibatalkan',
         ]);
 
         $transaksi = Transaksi::findOrFail($id);
-        $transaksi->update($request->all());
-        return response()->json($transaksi);
+        $transaksi->status = $request->status;
+        $transaksi->save();
+
+        return back()->with('success', 'Status transaksi diperbarui.');
     }
+
 
     // Menghapus transaksi
     public function destroy($id)
