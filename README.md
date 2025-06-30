@@ -16,9 +16,9 @@
 
 |**Role**|**Fitur-Fitur**|
 | :- | :- |
-|Admin|- Mengelola data produk <br>- Mengelola kategori <br>- Melihat daftar transaksi <br>- Mengelola data user <br>- Mengelola promo/iklan|
+|Admin|- Mengelola data produk <br>- Mengelola kategori <br>- Melihat daftar transaksi <br>- Mengelola data user|
 |Petugas|- Mengelola stok barang <br>- Memproses pesanan <br>- Mengatur status transaksi <br>- Melihat daftar transaksi|
-|User (Pelanggan)|- Registrasi akun <br>- Login/logout <br>- Melihat produk berdasarkan kategori <br>- Menambah produk ke keranjang <br>- Melakukan checkout <br>- Melihat status pesanan <br>- Menerima notifikasi promo|
+|User (Pelanggan)|- Registrasi akun <br>- Login/logout <br>- Melihat produk berdasarkan kategori <br>- Menambah produk ke keranjang <br>- Melakukan checkout <br>- Melihat status pesanan|
 
 **Tabel-tabel database beserta field dan tipe datanya**
 
